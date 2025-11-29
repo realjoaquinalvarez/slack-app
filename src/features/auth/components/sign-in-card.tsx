@@ -13,12 +13,17 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
 import { SignInFlow } from "../types";
+import { useState } from "react";
 
 interface SingInCardProps {
     setState: (state: SignInFlow) => void
 }
 
 export const SingInCard = ({setState}: SingInCardProps) => {
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    
   return (
     <Card className="w-full h-full p-8">
       <CardHeader className="px-0 pt-0">
@@ -31,16 +36,16 @@ export const SingInCard = ({setState}: SingInCardProps) => {
         <form action="" className="space-y-2.5">
             <Input 
                 disabled={false}
-                value=""
-                onChange={() => {}}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 type="email"
                 required
             />
             <Input 
                 disabled={false}
-                value=""
-                onChange={() => {}}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 type="password"
                 required
@@ -73,7 +78,7 @@ export const SingInCard = ({setState}: SingInCardProps) => {
             </Button>
         </div>
         <p className="text-xs text-muted-foreground">
-            Don't have an accoun't? <span onClick={() => setState('signUp')} className="text-sky-700 hover:underline cursor-pointer">Sign Up</span>
+            Don't have an account? <span onClick={() => setState('signUp')} className="text-sky-700 hover:underline cursor-pointer">Sign Up</span>
         </p>
       </CardContent>
     </Card>

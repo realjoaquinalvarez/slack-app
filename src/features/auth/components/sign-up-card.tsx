@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa"
 
@@ -19,29 +21,42 @@ interface SingUpCardProps {
 }
 
 export const SingUpCard = ({setState}: SingUpCardProps) => {
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    
   return (
     <Card className="w-full h-full p-8">
       <CardHeader className="px-0 pt-0">
-        <CardTitle>Login to continue</CardTitle>
+        <CardTitle>Sign up to continue</CardTitle>
         <CardDescription>
             Use your email or another service to continue
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-5 px-0 pb-0">
         <form action="" className="space-y-2.5">
-            <Input 
+        <Input 
                 disabled={false}
-                value=""
-                onChange={() => {}}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 type="email"
                 required
             />
             <Input 
                 disabled={false}
-                value=""
-                onChange={() => {}}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
+                type="password"
+                required
+            />
+            <Input 
+                disabled={false}
+                value={confirmPassword}
+                onChange={(e) => {setConfirmPassword(e.target.value)}}
+                placeholder="Confirm password"
                 type="password"
                 required
             />
@@ -73,7 +88,7 @@ export const SingUpCard = ({setState}: SingUpCardProps) => {
             </Button>
         </div>
         <p className="text-xs text-muted-foreground">
-            Don't have an accoun't? <span onClick={() => setState('signIn')} className="text-sky-700 hover:underline cursor-pointer">Sign In</span>
+            Already have an account? <span onClick={() => setState('signIn')} className="text-sky-700 hover:underline cursor-pointer">Sign In</span>
         </p>
       </CardContent>
     </Card>
